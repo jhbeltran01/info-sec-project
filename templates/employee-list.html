@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQLi</title>
+
+  <style>
+    table,
+    th,
+    td{
+      border: 2px solid black;
+      border-collapse: collapse;
+    }
+
+    table {
+      margin: auto;
+    }
+
+    th,
+    td {
+      padding: 0.5em;
+      min-width: 200px;
+    }
+
+    .link {
+      border: 1px solid rgb(29, 29, 194);
+      background-color: rgb(29, 29, 194);
+      color: white;
+      text-decoration: none;
+      padding: 0.5em;
+      border-radius: 3px;
+      display: block;
+      width: max-content;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
+
+    .center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="">
+    <a class="link" href="{% url 'sqli:employee-create' %}">Add Employee</a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="header">First Name</th>
+        <th class="header">Last Name</th>
+        <th class="header">Department</th>
+        <th class="header"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in self.employees %}
+        <tr>
+          <td class="data">{{ employee.first_name }}</td>
+          <td class="data">{{ employee.last_name }}</td>
+          <td class="data">{{ employee.department }}</td>
+          <td class="data center">
+            <a href="{% url 'sqli:details' %}?employee_id={{ employee.id }}">
+              View
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

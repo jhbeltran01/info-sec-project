@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .link {
+      border: 1px solid rgb(29, 29, 194);
+      background-color: rgb(29, 29, 194);
+      color: white;
+      text-decoration: none;
+      padding: 0.5em;
+      border-radius: 3px;
+      display: block;
+      width: max-content;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
+
+    .mb {
+      margin-bottom: 1rem;
+    }
+
+    .center {
+      max-width: max-content;
+      margin: auto;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="center text-center">
+    <form class="mb" method="POST">
+      {% csrf_token %}
+      <div class="mb">
+        <label for="first_name">First Name</label> <br />
+        {{self.form.first_name}}
+      </div>
+      <div class="mb">
+        <label for="last_name">Last Name</label> <br />
+        {{self.form.last_name}}
+      </div>
+      <div class="mb">
+        <label for="first_name">Department</label> <br />
+        {{self.form.department}}
+      </div>
+      <input type="submit" value="Create">
+    </form>
+    <div>
+      <a class="link" href="{% url 'sqli:employee-list' %}">List</a>
+    </div>
+  </div>
+</body>
+</html>
