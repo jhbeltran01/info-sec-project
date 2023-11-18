@@ -6,9 +6,14 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>First Name: {{ self.employee.first_name }}</h1>
-  <h1>Last Name: {{ self.employee.last_name }}</h1>
-  <h1>Department: {{ self.employee.department }}</h1>
+  {% if self.employee %}
+    <h1>First Name: {{ self.employee.first_name }}</h1>
+    <h1>Last Name: {{ self.employee.last_name }}</h1>
+    <h1>Department: {{ self.employee.department }}</h1>
+  {% else %}
+    <h1>Employee is not available.</h1>
+  {% endif %}
+  
 
   <a href="{% url 'sqli:employee-list' %}">List</a>
 </body>

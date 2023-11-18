@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2em;
+    }
+
+    .chat {
+      border: 1px solid black;
+      padding: 1em;
+      max-width: 400px;
+      text-align: right;
+    }
+
+    .content {
+      margin-bottom: 1rem;
+    }
+
+    .message {
+      background-color: rgba(128, 128, 128, 0.651);
+      padding: 0.5em;
+      border-radius: 5px;
+      width: max-content;
+      margin-left: auto;
+    }
+
+  </style>
+</head>
+<body class="container">
+  <div class="chat">
+    {% for chat in self.chats %}
+      <div class="content">
+        <p class="sender">{{ chat.sender }}</p>
+        <p class="message">{{ chat.message|safe }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label for="sender">Sender: </label>
+      <input type="text" name="sender" id="sender" required="required"/>
+    </div>
+
+    <div>
+      <label for="message">Message:</label> <br>
+      <textarea name="message" id="message" cols="30" rows="10" required="required"></textarea>
+    </div>
+    <input type="submit" value="Send">
+  </form>
+</body>
+</html>

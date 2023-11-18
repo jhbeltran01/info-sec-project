@@ -39,6 +39,10 @@
     .center {
       text-align: center;
     }
+    
+    .mr {
+      margin-right: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -62,8 +66,11 @@
           <td class="data">{{ employee.last_name }}</td>
           <td class="data">{{ employee.department }}</td>
           <td class="data center">
-            <a href="{% url 'sqli:details' %}?employee_id={{ employee.id }}">
-              View
+            <a class="mr" href="{% url 'sqli:details' %}?employee_id={{ employee.id }}">
+              Unsecured
+            </a>
+            <a href="{% url 'sqli:details-secured' %}?employee_id={{ employee.id }}">
+              Secured
             </a>
           </td>
         </tr>
